@@ -52,7 +52,7 @@ public Action:Command_BindCancel(client, args) {
 void qureyWebInfo(client, bool feedback) {
     char steamid[CLASS_LENGTH];
     GetClientAuthId(client, AuthId_SteamID64, steamid, CLASS_LENGTH);
-    
+    // GET
 }
 
 void postBindInfo(client) {
@@ -60,9 +60,9 @@ void postBindInfo(client) {
 }
 
 stock bool IsPlayer(int client) {
-  	return IsValidClient(client) && !IsFakeClient(client) && !IsClientSourceTV(client);
+    return IsValidClient(client) && !IsFakeClient(client) && !IsClientSourceTV(client);
 }
 
 stock bool IsValidClient(int client) {
-	  return client > 0 && client <= MaxClients && IsClientConnected(client) && IsClientInGame(client);
+    return client > 0 && client <= MaxClients && IsClientConnected(client) && IsClientInGame(client);
 }
