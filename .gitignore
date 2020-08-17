@@ -1,8 +1,6 @@
 .vscode
 compiled
-compile.exe
 compile.dat
-spcomp.exe
 system2_http.sp
 system2_test.sp
 json_test.sp
