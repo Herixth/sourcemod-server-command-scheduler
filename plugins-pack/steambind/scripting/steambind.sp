@@ -49,10 +49,18 @@ public Action:Command_BindCancel(client, args) {
 
 }
 
-void qureyWebInfo(client, bool feedback) {
+void queryWebSteamId(client) {
     char steamid[CLASS_LENGTH];
     GetClientAuthId(client, AuthId_SteamID64, steamid, CLASS_LENGTH);
-    // GET
+    // POST
+    System2HTTPRequest httpRequest = new System2HTTPRequest(
+        QuerySteamIdCallback, "https://www.csgowiki.top/api/server/steambind?steamid=%s", steamid);
+    httpRequest.Any = client;
+    httpRequest.GET();
+}
+
+void queryWebSteamToken(client) {
+
 }
 
 void postBindInfo(client) {
