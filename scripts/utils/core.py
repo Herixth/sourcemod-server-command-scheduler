@@ -50,7 +50,7 @@ class Scheduler:
         parser_dict = {"exec": exec_parse, "sysinfo": sysinfo_parse, "update": update_parse}
         try:
             part_cmd = command.strip("\n").split("|")
-            res = parser_dict[part_cmd[0]](*part_cmd[2])
+            res = parser_dict[part_cmd[0]](part_cmd[2])
             endtime = int(time.time()) # timestamp
             self.__write_result(*part_cmd[1:3], str(endtime - int(part_cmd[3])), res)
         except:

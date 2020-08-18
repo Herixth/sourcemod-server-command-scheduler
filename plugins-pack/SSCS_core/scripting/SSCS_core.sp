@@ -63,7 +63,7 @@ void FileReadOP() {
                 status = r_Wait;
             }
             else {
-                PrintToChat(client, "\x06%s", info_line);
+                PrintToChat(client, "\x07%s", info_line);
                 status = r_InRes;
             }
         }
@@ -72,7 +72,7 @@ void FileReadOP() {
                 status = r_Wait;
             }
             else {
-                PrintToChat(client, "\x06%s", info_line);
+                PrintToChat(client, "\x07%s", info_line);
             }
         }
         else {

@@ -33,12 +33,10 @@ public Action:MonitorTimer(Handle:timer) {
 
 public Action:Command_Sysinfo(client, args) {
     decl String:path[PLATFORM_MAX_PATH];
-    char info_line[64];
-    BuildPath(Path_SM, path, PLATFORM_MAX_PATH, "sv_info.txt");
-    new Handle:fileHandle = OpenFile(path, "r");
-    while (!IsEndOfFile(fileHandle) && ReadFileLine(fileHandle, info_line, sizeof(info_line))) {
-        PrintToChatAll("\x01[\x05CSGO Wiki\x01]%s", info_line);
-    }
+    int timestamp = GetTime();
+    BuildPath(Path_SM, path, PLATFORM_MAX_PATH, "SSCS.in");
+    new Handle:fileHandle = OpenFile(path, "w");
+    WriteFileLine(fileHandle, "sysinfo|%d|sysinfo|%d", client, timestamp);
     CloseHandle(fileHandle);
 }
 
