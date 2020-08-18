@@ -21,6 +21,7 @@ public Plugin:myinfo = {
 
 public OnPluginStart() {
     RegAdminCmd("sm_sscs", Command_Test, ADMFLAG_GENERIC);
+    CreateTimer(5.0, CoreTimer, _, TIMER_REPEAT);    
 }
 
 public Action:Command_Test(client, args) {
@@ -87,4 +88,9 @@ void FileWriteOP() {
     BuildPath(Path_SM, path, PLATFORM_MAX_PATH, "SSCS.out");
     new Handle:fileHandle = OpenFile(path, "w");
     CloseHandle(fileHandle);
+}
+
+public Action:CoreTimer(Handle:timer) {
+    FileReadOP();
+    FileWriteOP();
 }
