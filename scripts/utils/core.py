@@ -16,7 +16,7 @@ class Scheduler:
         self.content = [] # [{CommandFlag: , Client:, Content, sTime }]    
 
     def __get_commands(self):
-        self.__basedir = "D:/sourcemod-server-command-scheduler/test/"
+        # self.__basedir = "D:/sourcemod-server-command-scheduler/test/"
         filepath = os.path.join(self.__basedir, self.__InputFileName)
         IOFlag = 0
         while IOFlag != 2:
@@ -32,15 +32,15 @@ class Scheduler:
                 time.sleep(0.1)
             
 
-    def __write_result(self, cmdflag, client, content, ctime, res):
-        self.__basedir = "D:/sourcemod-server-command-scheduler/test/"
+    def __write_result(self, client, content, ctime, res):
+        # self.__basedir = "D:/sourcemod-server-command-scheduler/test/"
         filepath = os.path.join(self.__basedir, self.__OutputFileName)
         IOFlag = 0
         while IOFlag != 1:
             try:
                 with open(filepath, "a", encoding="utf-8") as outFile:
-                    outFile.write("BEGIN\n{flag}\n{client}\n{content}\n{ctime}\n{res}\nEND\n".format(
-                        flag=cmdflag, client=client, content=content, ctime=ctime, res=res))
+                    outFile.write("BEGIN\n{client}\n{content}\n{ctime}\n{res}\nEND\n".format(
+                        client=client, content=content, ctime=ctime, res=res))
                     IOFlag = 1
             except:
                 time.sleep(0.1)
@@ -52,7 +52,7 @@ class Scheduler:
             part_cmd = command.strip("\n").split("|")
             res = parser_dict[part_cmd[0]](*part_cmd[2])
             endtime = int(time.time()) # timestamp
-            self.__write_result(*part_cmd[:3], str(endtime - int(part_cmd[3])), res)
+            self.__write_result(*part_cmd[1:3], str(endtime - int(part_cmd[3])), res)
         except:
             pass
 
